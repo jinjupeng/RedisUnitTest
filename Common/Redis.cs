@@ -27,11 +27,14 @@ namespace Common
 
         public Redis()
         {
+            /*
+            #region 从web.config中读取appString
             this.address = ConfigurationManager.AppSettings["RedisServer"];
-
             if (this.address == null || string.IsNullOrWhiteSpace(this.address.ToString()))
                 throw new ApplicationException("配置文件中未找到RedisServer的有效配置");
-            connectionMultiplexer = ConnectionMultiplexer.Connect(address);
+            #endregion
+             */
+            connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
             database = connectionMultiplexer.GetDatabase();
             //sub = connectionMultiplexer.GetSubscriber();
         }
@@ -71,9 +74,9 @@ namespace Common
                 value = cacheObject.Value;
             }
             DateTime endJson = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis取数据时间:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(endCache).TotalMilliseconds + "毫秒,总耗时:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
             return value;
 
         }
@@ -87,9 +90,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
         public void Insert(string key, object data, int cacheTime)
@@ -101,9 +104,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData, timeSpan);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
         public void Insert(string key, object data, DateTime cacheTime)
@@ -115,9 +118,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData, timeSpan);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
         public void Insert<T>(string key, T data)
@@ -129,9 +132,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
         public void Insert<T>(string key, T data, int cacheTime)
@@ -143,9 +146,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData, timeSpan);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
         public void Insert<T>(string key, T data, DateTime cacheTime)
@@ -157,9 +160,9 @@ namespace Common
             DateTime endJson = DateTime.Now;
             database.StringSet(key, jsonData, timeSpan);
             DateTime endCache = DateTime.Now;
-            #if DEBUG
+#if DEBUG
             //Log.Debug("redis插入数据时间:" + endCache.Subtract(endJson).TotalMilliseconds + "毫秒,转JSON时间:" + endJson.Subtract(begin).TotalMilliseconds + "毫秒,总耗时:" + endCache.Subtract(begin).TotalMilliseconds + "毫秒");
-            #endif
+#endif
         }
 
 
@@ -187,6 +190,6 @@ namespace Common
         {
             return database.KeyExists(key);
         }
-     
+
     }
 }
