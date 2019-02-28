@@ -8,13 +8,20 @@ namespace RedisTest
     public class RedisTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CacheTest()
         {
             Redis r = new Redis();
             r.Insert("k001", "value001");
             object oo = r.Get("k001");
-            Cache.Insert("key01", "test001");
-            object obj = Cache.Get("key01");
+            CacheHelper.Insert("key01", "test001");
+            object obj = CacheHelper.Get("key01");
+        }
+        [TestMethod]
+        public void RedisTest1()
+        {
+            RedisHelper rh = new RedisHelper();
+            object j = rh.Get<string>("123");  //打断点调试。通过
+            
         }
     }
 }

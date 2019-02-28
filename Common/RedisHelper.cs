@@ -26,7 +26,8 @@ namespace Common
         /// <summary>
         /// 连接字符串，一般写在配置文件里面
         /// </summary>
-        private static readonly string ConnectionString = "127.0.0.1:6379,password=123456,connectTimeout=1000,connectRetry=1,syncTimeout=10000";
+        //private static readonly string ConnectionString = "127.0.0.1:6379,password=123456,connectTimeout=1000,connectRetry=1,syncTimeout=10000";
+        private static readonly string ConnectionString = "127.0.0.1:6379,connectTimeout=1000,connectRetry=1,syncTimeout=10000";
         /// <summary>
         /// 上锁，单例模式
         /// </summary>
