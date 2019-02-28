@@ -81,6 +81,7 @@
     <Compile Include="ICache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis.cs" />
+    <Compile Include="RedisHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
