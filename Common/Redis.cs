@@ -1,17 +1,11 @@
 ﻿using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common
 {
     public class Redis : ICache
     {
-        int DEFAULT_TMEOUT = 600;//默认超时时间（单位秒）
         string address;
         JsonSerializerSettings jsonConfig = new JsonSerializerSettings() { ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore, NullValueHandling = NullValueHandling.Ignore };
         ConnectionMultiplexer connectionMultiplexer;
@@ -42,17 +36,7 @@ namespace Common
         /// <summary>
         /// 连接超时设置
         /// </summary>
-        public int TimeOut
-        {
-            get
-            {
-                return DEFAULT_TMEOUT;
-            }
-            set
-            {
-                DEFAULT_TMEOUT = value;
-            }
-        }
+        public int TimeOut { get; set; } = 600;
 
         public object Get(string key)
         {

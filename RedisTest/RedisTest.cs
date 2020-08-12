@@ -7,6 +7,7 @@ namespace RedisTest
     [TestClass]
     public class RedisTest
     {
+        // https://www.cnblogs.com/itmu89/p/7118474.html
         [TestMethod]
         public void CacheTest()
         {
